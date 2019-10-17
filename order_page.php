@@ -26,7 +26,7 @@
 				$xx = mysqli_query($conn,"SELECT itemno, idtable, qty FROM orderdb WHERE orderid = $row[orderid]");
 				$roww = $xx->fetch_assoc();
 				echo "<td class='top'>".$roww['idtable']."</td>";
-				while($roww = $xx->fetch_assoc()){
+				do{
 					$yy = mysqli_query($conn,"SELECT price FROM menuitems WHERE itemno = $roww[itemno]");
 					
 					while($rowww = $yy->fetch_assoc()){
@@ -34,7 +34,9 @@
 						$float_total = $float_total + $float_a ;
 						echo "<td>".$roww['itemno']."</td><td>".$roww['qty']."</td><td>".$float_a."</td></tr><td></td><td></td>";
 					}
-				}
+
+				} while($roww = $xx->fetch_assoc());
+				
 			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td>";
 		}
 		
