@@ -16,6 +16,8 @@
 	<th>Food</th>
 	<th>Quantity</th>
 	<th>Subtotal</th>
+	<th>Edit</th>
+
 </tr>
 <?php
 	$extract = mysqli_query($conn,"SELECT DISTINCT orderid FROM orderdb");
@@ -37,7 +39,7 @@
 
 				} while($roww = $xx->fetch_assoc());
 				
-			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td>";
+			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td> <a href='edit.php?edit=$row[orderid]'>Edit</a></td>";
 		}
 		
 		echo "</table>";
