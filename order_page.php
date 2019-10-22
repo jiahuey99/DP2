@@ -1,5 +1,6 @@
 <?php
 	include_once 'connection.php';
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,6 @@
 <h1>Order Details</h1>
 <table>
 <tr>
-	<th>Order ID</th>
 	<th>Table ID</th>
 	<th>Food</th>
 	<th>Quantity</th>
@@ -39,7 +39,7 @@
 
 				} while($roww = $xx->fetch_assoc());
 				
-			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td> <a href='edit.php?edit=$row[orderid]'>Edit</a></td>";
+			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td> <a href='edit.php?orderid=$row[orderid]'>Edit</a></td>";
 		}
 		
 		echo "</table>";

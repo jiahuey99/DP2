@@ -57,24 +57,34 @@
 	</head>
 	
 	<body>
-		
+	
 		<?php
-
 			require('connection.php');
-			$oid = mysqli_real_escape_string($conn,$_GET['orderid']);
-					
-			
+			if(isset($_GET['orderid']))
+			{
+			$oid = mysqli_real_escape_string($conn,$_GET['orderid']);	
+			echo $oid;
+			}
+			else
+			{
+				echo"No ID";
+			}
+
+			//$oid = mysqli_real_escape_string($conn,$_GET['orderid']);	
 		?>
+
+
+
 		<div class="menuNav">
 			<button onclick="categorize('food')">Food</button>
 			<button onclick="categorize('beverage')">Beverage</button>
-			Order:<input type="number" name="ordernum" value = "<?php echo rowww[$oid]; ?>">
 		</div>
-		<form method="post" action="add_order.php">
+		<form method="post" action="edit_order.php">
 		<div id="foodDIV">
 			
 			<table>
 				<tr>
+					<th>Order ID</th>
 					<th>Items</th>
 					<th>Unit Price</th>
 					<th>Qty</th>					
@@ -94,7 +104,8 @@
 
 			if($result->num_rows>0){
 				while($row=$result->fetch_assoc()){
-					echo "<tr>
+					echo "<tr><td>
+						<input type='hidden' name='order[".$row['itemno']."][itemno]' value='$oid'>".$oid."</td>
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td><input type='number' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
 						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
@@ -109,7 +120,7 @@
 			$conn->close();
 			?>
 			</table>
-			<button type="submit">Add Order</button>
+			<button type="submit">Edit Order</button>
 		</div>
 		<div id="bevDIV2">
 			
@@ -146,7 +157,7 @@
 			$conn->close();
 			?>
 			</table>
-			<button type="submit">Add Order</button>
+			<button type="submit">Edit Order</button>
 		</div>
 		</form>
 
