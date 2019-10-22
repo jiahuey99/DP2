@@ -89,7 +89,10 @@ $conn=mysqli_connect("localhost","root","","")
 </head>
 
 <body>
-	<table>
+	<table width="600" border="1" cellpadding="1" cellspacing="1">
+		
+		<h1>Recipt</h1>
+		
 		<tr>
 			<th>orderid</th>
 			<th>itemno</th>
@@ -98,13 +101,20 @@ $conn=mysqli_connect("localhost","root","","")
 			<th>total</th>
 		</tr>
 		<?php
+
 		$conn =mysqli_connect("localhost","root","","tabletable");
 		if($conn-> connect_error)
 		{
 			die("Connection failed:".$conn->error);
 		}
 		
+		echo "Date : " . date("Y/m/d") . date(" (l)"). "<br>";
+		
+		date_default_timezone_set("Asia/Kuala_Lumpur");
+		echo "Time : " . date("h:i:sa"). "<br>";
+		
 		$sql="SELECT orderid,itemno,qty,idtable,subtotal from orderdb";
+	
 		$result =$conn->query($sql);
 		
 		
@@ -112,8 +122,12 @@ $conn=mysqli_connect("localhost","root","","")
 		{
 			while($row =$result-> fetch_assoc())
 			{
+				
 				echo"<tr><td>".$row["orderid"]."</td><td>".$row["itemno"]."</td><td>".$row["qty"]."</td><td>".$row["idtable"]."</td><td>".$row["subtotal"]."</td></tr>";
+				
+				
 			}
+
 			echo"</table>";
 		
 		}
@@ -123,7 +137,61 @@ $conn=mysqli_connect("localhost","root","","")
 		}
 		
 		$conn->close();
+		
+		echo"Balance :".$row['subtotal']. "<br>";
+				
+	
+		//if(isset($_POST['num1'])){ $name = $_POST['num1']; }
+	
+		//$num2 = $_POST["num1"];
+	
+		
+		echo"--------------------------------------------------"."<br>";
+	
+	
+
+		
 		?>
+		
+		
 	</table>
+	
+	
 </body>
+	<form >
+		<input type="text" formmethod="post" name="num1">
+		<input type="submit" value="Calculate">
+			
+	</form>
+	
 </html>
+
+
+<?php
+
+$conn =mysqli_connect("localhost","root","","tabletable");
+		if($conn-> connect_error)
+		{
+			die("Connection failed:".$conn->error);
+		}
+
+
+	//$sql="SELECT subtotal from orderdb";
+	
+	$sql="SELECT SUM(subtotal) from orderdb WHERE orderid=orderid";
+
+	$record =$conn->query($sql);
+
+	while($orderdb==mysql_fetch_assoc($record))
+	{
+		echo"<td>".$orderdb["subtotal"]."</td>";
+	}
+	
+		
+	//echo"Balance :".$data['subtotal']. "<br>"
+			
+			
+			
+			
+			
+?>
