@@ -1,4 +1,15 @@
-
+<?php
+function getQty($results, $itemno) {
+	$qty = NULL;
+	foreach ($results as $result) {
+		if ($result['itemno'] == $itemno) {
+			$qty = $result['qty'];
+			break;
+		}
+	}
+	return $qty;
+}
+?>
 <!DOCTYPE html>
 <html>
 	<title>Edit Order</title>
@@ -63,14 +74,13 @@
 			if(isset($_GET['orderid']))
 			{
 			$oid = mysqli_real_escape_string($conn,$_GET['orderid']);	
-			echo $oid;
 			}
 			else
 			{
-				echo"No ID";
+				echo"No Order ID";
 			}
 
-			//$oid = mysqli_real_escape_string($conn,$_GET['orderid']);	
+			
 		?>
 
 
@@ -80,11 +90,17 @@
 			<button onclick="categorize('beverage')">Beverage</button>
 		</div>
 		<form method="post" action="edit_order.php">
+		<?php
+			echo "<input type='hidden' name='orderID' value='".$oid."'>";
+			$sqledit = "SELECT itemno,qty FROM orderdb where orderid = $oid";
+			$resultedit = $conn->query($sqledit);
+			$resultedit = $resultedit->fetch_all(MYSQLI_ASSOC);
+			
+		?>
 		<div id="foodDIV">
 			
 			<table>
 				<tr>
-					<th>Order ID</th>
 					<th>Items</th>
 					<th>Unit Price</th>
 					<th>Qty</th>					
@@ -104,14 +120,13 @@
 
 			if($result->num_rows>0){
 				while($row=$result->fetch_assoc()){
-					echo "<tr><td>
-						<input type='hidden' name='order[".$row['itemno']."][itemno]' value='$oid'>".$oid."</td>
+					echo "<tr>
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td><input type='number' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
-						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]' value='".getQty($resultedit,$row['itemno'])."'></td>
 						<td><input type='button' value='x' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
-				}
+				} 
 				echo"</table>";
 			}
 			else{
@@ -120,7 +135,7 @@
 			$conn->close();
 			?>
 			</table>
-			<button type="submit">Edit Order</button>
+			<button type="submit">Update Order</button>
 		</div>
 		<div id="bevDIV2">
 			
@@ -145,8 +160,8 @@
 					echo "<tr>
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td><input type='text' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
-						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
-						<td><input type='button' value='x'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]' value='".getQty($resultedit,$row['itemno'])."'></td>
+						<td><input type='button' value='x' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
 				}
 				echo"</table>";

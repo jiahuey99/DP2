@@ -12,8 +12,9 @@
 <h1>Order Details</h1>
 <table>
 <tr>
-	<th>Table ID</th>
-	<th>Food</th>
+	<th>Order ID</th>
+	<th>Table</th>
+	<th>Food ID</th>
 	<th>Quantity</th>
 	<th>Subtotal</th>
 	<th>Edit</th>

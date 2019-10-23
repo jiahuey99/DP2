@@ -1,45 +1,36 @@
 <?php
     include_once 'connection.php';
 
-    if (!$_POST['order'])
+    if (!$_POST['order'] || !$_POST['orderID'])
     {  
-        echo "Nothing sent";
-        //header("Location: order_page.php");
-        
+        header("Location: order_page.php");
     }
-    else{
-        if(isset($_GET['orderid']))
-        {
-        $oid = mysqli_real_escape_string($conn,$_GET['orderid']);	
-        echo $oid;
-        }
-        else
-        {
-            echo"No ID";
-        }        
-    }
-   
-/*
+
+    $oid = mysqli_real_escape_string($conn,$_POST['orderID']);     
 
     // Remove Empty items from the menu
     $orderItems = array_filter($_POST['order'], function($orderItem) {
         return $orderItem['quantity'] != null && $orderItem['quantity'] != 0;
     });
-    // $sql = 'Select max(orderid) as lastId from orderdb';
-    // $result = $conn->query($sql)->fetch_assoc();
-    // $sql = ''; 
-    // $orderId = ++$result['lastId'];
- 
+    $sql = '';
     foreach ($orderItems as $itemno => $orderItem) {
         $subtotal = $orderItem['price'] * $orderItem['quantity'];
-        $sql .= "UPDATE orderdb SET qty AS $orderItem['quantity] WHERE $orderItem['orderid'] = $oid";
-        }
+        $sql .= "UPDATE orderdb SET qty = ".$orderItem['quantity'].", subtotal = ".$subtotal." WHERE orderid = ".$oid." AND itemno = ".$itemno.";";
+    }
 
-    if ($conn->multi_query($sql) === TRUE) {
+    $deletedItems = array_filter($_POST['order'], function($orderItem) {
+        return $orderItem['quantity'] == null || $orderItem['quantity'] == 0;
+    });
+
+    foreach ($deletedItems as $itemno => $deletedItem) {
+        $sql .= "DELETE from orderdb WHERE orderid = ".$oid." AND itemno = ".$itemno.";";
+    }
+
+    if ($conn->multi_query($sql) === TRUE) { //Multi query ki jaga khali query and no need for itemnum above
         header("Location: order_page.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    */
-   // $conn->close();
+    
+    $conn->close();
 ?>
