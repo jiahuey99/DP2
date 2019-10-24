@@ -81,7 +81,7 @@
 			{
 				//reading to other page
 				//link to next page menu
-				header("Location:welecom");
+				header("Location:menu.php");
 				
 			}
 			else
