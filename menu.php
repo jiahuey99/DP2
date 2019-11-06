@@ -82,6 +82,7 @@
 			}
 			$sql= "SELECT itemno,name,price from menuitems where category='Food'";
 			$result =$conn ->query($sql);
+			//$resulttable = $conn->query($sqltable);
 
 			if($result->num_rows>0){
 				while($row=$result->fetch_assoc()){
@@ -91,8 +92,18 @@
 						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
 						<td><input type='button' value='x' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
+
 				}
 				echo"</table>";
+				$sqltable=mysqli_query($conn, "SELECT idtable FROM tabledb");
+				echo "<select name='id'>";
+				while($rowtable = $sqltable->fetch_assoc())
+				{
+					echo 
+					
+					"<option value=\"id1\">".$rowtable['idtable']."</option>";
+				}
+				echo "</select>";
 			}
 			else{
 				echo "0 result ";
@@ -130,6 +141,16 @@
 					</tr>";
 				}
 				echo"</table>";
+				echo"</table>";
+				$sqltable=mysqli_query($conn, "SELECT idtable FROM tabledb");
+				echo "<select name='id'>";
+				while($rowtable = $sqltable->fetch_assoc())
+				{
+					echo 
+					
+					"<option value=\"id1\">".$rowtable['idtable']."</option>";
+				}
+				echo "</select>";
 			}
 			else{
 				echo "0 result ";

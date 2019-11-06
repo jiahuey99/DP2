@@ -112,10 +112,7 @@ echo "<tr><td class='top'>".$orderid."</td>";
 Amount Receive:  <input type="text" name="amount" id = "amountt">
 <button type="button" onclick="calculate()">Count</button>
 <p id ="balancee">Balance:</p>
-Member Name: <input type ="text" name ="membername"><br><br>
-<?php
-echo"<a href='totransaction.php?orderid=$orderid'>Save Record</a>";
-?>
+<?php echo"<form action = 'totransaction.php?'> Order Id: <input type='text' name='orderid' value='$orderid'>Member Name: <input type = 'text' name ='membername'><br><br><input type='submit' value='Save Record'></form>"?>
 <br>
 <script>
 function calculate(){

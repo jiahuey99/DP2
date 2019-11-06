@@ -7,6 +7,12 @@
 <head>
 <title>Order Details</title>
 <link rel="stylesheet" href="order_css.css">
+<script type="text/javascript">
+function confirm_click()
+{
+return confirm("Are you sure you want to delete order?");
+}
+</script>
 </head>
 <body>
 <h1>Order Details</h1>
@@ -40,7 +46,7 @@
 
 				} while($roww = $xx->fetch_assoc());
 				
-			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td> <a href='edit.php?orderid=$row[orderid]'>Edit</a></td><td><a href='delete_order.php?orderid=$row[orderid]'>Delete</a></td><td><a href='paymentsy.php?orderid=$row[orderid]'>Payment</a></td>";
+			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td> <a href='edit.php?orderid=$row[orderid]'>Edit</a></td><td><a href='delete_order.php?orderid=$row[orderid]' onclick='return confirm_click();'>Delete</a></td><td><a href='paymentsy.php?orderid=$row[orderid]'>Payment</a></td>";
 		}
 		
 		echo "</table>";
