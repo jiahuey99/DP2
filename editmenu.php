@@ -130,7 +130,7 @@
 			
 			$add = mysqli_query($conn,"SELECT * FROM menuitems WHERE name='$itemname'");
 			if($add->num_rows==0){
-			$sql = "UPDATE menuitems SET name='$item_name',price='$item_price', discount='$item_discount', category='$item_category',img='$image' WHERE ITEMNO = $item_no" ;
+			$sql = "UPDATE menuitems SET name='$item_name',price='$item_price', discount='$item_discount', category='$item_category',img='$itemimg' WHERE ITEMNO = $item_no" ;
 			mysqli_query($conn,$sql);
 		 
 			}else{
