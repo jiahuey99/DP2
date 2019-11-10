@@ -26,11 +26,11 @@
 			if($result->num_rows>0){
 				
 				$sqltable=mysqli_query($conn, "SELECT idtable FROM tabledb");
-					echo "Table No <select name='id'>";
+					echo "Table No <select name='id' onChange='myFunction(event)'>";
 					while($rowtable = $sqltable->fetch_assoc())
 					{
 						echo 
-						" <option value=\"id1\">".$rowtable['idtable']."</option>";
+						" <option value=".$rowtable['idtable'].">".$rowtable['idtable']."</option>";
 					}
 					echo "</select>";
 			}
@@ -67,7 +67,7 @@
 					echo "<td>";?> <img id=list src="<?php echo $row["img"];?>" height="80" width="80"><?php echo"</td>";
 					echo
 						"
-						
+	
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td>RM    ".$row["price"]."</td>
 						<td id=qty><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
@@ -126,8 +126,9 @@
 			$conn->close();
 			?>
 			</table>
-			
 		</div>
+		<h1> TESTING </h1>
+		<input type="text" id="tableid" name="tableid"> 		
 		<button id=btn type="submit">Add Order</button>
 		</form>
 		
@@ -162,6 +163,11 @@
 		document.getElementsByName('order['+item+'][quantity]')[0].value = '';	
 	}
 
+
+	function myFunction(e) {
+    document.getElementById('tableid').value = e.target.value
+	console.log('yooo')
+}
 	</script>
 
 	</body>

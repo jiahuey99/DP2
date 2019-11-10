@@ -157,8 +157,10 @@
 			}
 			$conn->close();
 			?>
+	
 			</table>
 			<button type="submit">Add Order</button>
+
 		</div>
 		</form>
 
