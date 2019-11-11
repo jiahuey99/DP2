@@ -1,0 +1,48 @@
+h1{
+	font-size:20px;
+	text-align:center;
+	background-color:white;
+	border-top: 1px solid grey;
+	border-bottom:1px solid grey;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+fieldset{
+	margin:30px auto 5px auto;
+	width: 60%;
+	background-color:#f2f2f2;
+}
+
+legend{
+	color:white;
+	background-color:#101f3d;
+	padding:5px 30px;
+}
+input[type="date"]{
+		text-align:left;
+		margin-right:20%;
+		margin-top:20px;
+}
+
+input[type="submit"]{
+	border-color:white;
+	border-style:outset;
+	outline: none;
+	background-color:#101f3d;
+	color:white;
+	padding: 14px 16px;
+	font-weight:bold;
+	font-size: 20px;
+	width:120px;
+	text-align:center;
+	margin-right:20px;
+	border-radius:12px;
+	float:right;
+}
+
+input[type="submit"]:hover{
+	background-color: white;
+	border-color:#101f3d;
+	color:black;
+}

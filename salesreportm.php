@@ -74,7 +74,6 @@
 	for($yyy=0;$yyy<count($arrrrr);$yyy++){
 		$amounttttttt = $amounttttttt + floatval($arrrrr[$yyy]);
 	}
-	echo $amounttttttt;
 	echo '<table id="box"><tr><td class="haaa"></td><td class="names" colspan=2>';
 	for($hehe=0;$hehe<count($arr);$hehe++){
 		echo '<p class="graphnames">'.$arr[$hehe].'</p>';
@@ -83,12 +82,20 @@
 	
 	for($nono = 0; $nono<count($arrr); $nono++){
 		$height="";
-		$height = round(($arrr[$nono]/$quantityttt)*100,3);
+		if($quantityttt==0){
+			$height = 0;
+		}else{
+			$height = round(($arrr[$nono]/$quantityttt)*100,3);
+		}
 		$strheight = strval($height*3);
 		$strheight .="px";
 		
 		$height2="";
-		$height2 = round(($arrrrr[$nono]/$amounttttttt)*100,3);
+		if($amounttttttt==0){
+			$height2 = 0;
+		}else{
+			$height2 = round(($arrrrr[$nono]/$amounttttttt)*100,3);
+		}
 		$strheight2 = strval($height2*3);
 		$strheight2 .="px";
 		echo '<table id="graph" >';
@@ -185,7 +192,7 @@
 			
 			
 			
-	}while(date('Y-m-00', strtotime($sdate)) != date('Y-m-00', strtotime($fdate.'+1 month')));
+	}while(date('Y-m-00', strtotime($gdate)) != date('Y-m-00', strtotime($fdate)));
 	
 	echo '<tr><td>Total</td>';
 	for($z = 0 ; $z < count($arrr) ; $z++){
@@ -207,9 +214,6 @@
 	for($lili=0;$lili<count($daytarray);$lili++){
 		$tt2 = $tt2+$daytarray[$lili];
 	}
-	
-	
-	
 	echo '<table id="box"><tr><td class="haaa"></td><td class="names" colspan=2>';
 	for($hehe=0;$hehe<count($datearray);$hehe++){
 		echo '<p class="graphnames">'.$datearray[$hehe].'</p>';
@@ -218,7 +222,7 @@
 	
 	for($nono = 0; $nono<count($datearray); $nono++){
 		$height="";
-		if($dayitemarray[$nono]== 0){
+		if($tt1 == 0){
 			$height = 0;
 		}else{
 			$height = round(($dayitemarray[$nono]/$tt1)*100,3);
@@ -227,7 +231,7 @@
 		$strheight .="px";
 		
 		$height2="";
-		if($daytarray[$nono+1]== 0){
+		if($tt2== 0){
 			$height2 = 0;
 		}else{
 			$height2 = round(($daytarray[$nono+1]/$tt2)*100,3);

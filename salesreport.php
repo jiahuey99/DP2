@@ -82,12 +82,20 @@
 	
 	for($nono = 0; $nono<count($arrr); $nono++){
 		$height="";
-		$height = round(($arrr[$nono]/$quantityttt)*100,3);
+		if($quantityttt == 0){
+			$height = 0;
+		}else{
+			$height = round(($arrr[$nono]/$quantityttt)*100,3);
+		}
 		$strheight = strval($height*10);
 		$strheight .="px";
 		
 		$height2="";
-		$height2 = round(($arrrrr[$nono]/$amounttttttt)*100,3);
+		if($amounttttttt == 0){
+			$height2 = 0;
+		}else{
+			$height2 = round(($arrrrr[$nono]/$amounttttttt)*100,3);
+		}
 		$strheight2 = strval($height2*10);
 		$strheight2 .="px";
 		echo '<table id="graph" >';
@@ -208,13 +216,21 @@
 	
 	for($nono = 0; $nono<count($datearray); $nono++){
 		$height="";
-		$height = round(($dayitemarray[$nono]/$tt1)*100,3);
-		$strheight = strval($height*10);
+		if($tt1==0){
+			$height = 0;
+		}else{
+			$height = round(($dayitemarray[$nono]/$tt1)*100,3);
+		}
+		$strheight = strval($height*5);
 		$strheight .="px";
 		
 		$height2="";
-		$height2 = round(($daytarray[$nono]/$tt2)*100,3);
-		$strheight2 = strval($height2*10);
+		if($tt2==0){
+			$height2 = 0;
+		}else{
+			$height2 = round(($daytarray[$nono]/$tt2)*100,3);
+		}
+		$strheight2 = strval($height2*5);
 		$strheight2 .="px";
 		echo '<table id="graph" >';
 		echo '<tr>';
