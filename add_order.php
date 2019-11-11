@@ -5,6 +5,8 @@
         header("Location: order_page.php");
     }
     // Remove Empty items from the menu
+    $idtable = $_POST['idtable'];
+
     $orderItems = array_filter($_POST['order'], function($orderItem) {
         return $orderItem['quantity'] != null && $orderItem['quantity'] != 0;
     });
@@ -18,8 +20,9 @@
     foreach ($orderItems as $itemno => $orderItem) {
         $subtotal = $orderItem['price'] * $orderItem['quantity'];
         $sql .= "INSERT INTO orderdb (orderid, itemno, qty, idtable, subtotal) 
-        VALUES ('$orderId','$orderItem[itemno]','$orderItem[quantity]',0,'$subtotal');";
+        VALUES ('$orderId','$orderItem[itemno]','$orderItem[quantity]','$idtable','$subtotal');";
     }
+    echo $idtable;
 
     if ($conn->multi_query($sql) === TRUE) {
         header("Location: order_page.php");

@@ -128,8 +128,11 @@
 			</table>
 		</div>
 		<h1> TESTING </h1>
-		<input type="text" id="tableid" name="tableid"> 		
-		<button id=btn type="submit">Add Order</button>
+		
+		<?php echo "<input type='number' id='tableid' name='idtable'>"; ?>
+
+
+		<button id="btn" type="submit">Add Order</button>
 		</form>
 		
 
