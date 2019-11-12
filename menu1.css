@@ -4,6 +4,7 @@
 		
 		body{
 			background-color:white;
+			margin-left:10%;
 		}
 		
 		#table {
@@ -11,6 +12,7 @@
 			font-size:20px;
 			padding:15px;
 			font-weight:bold;
+			margin-right:10%;
 		}
 		select{
 			width:50%;
@@ -18,7 +20,7 @@
 			
 		}
 		#foodDIV {
-		  width: 100%;
+		  width: 90%;
 		  height: 99%;
 		  text-align: center;
 		  background-color:none;
@@ -29,7 +31,7 @@
 		}
 		
 		#bevDIV2 {
-		  width: 100%;
+		  width: 90%;
 		  height: 99%;
 		  text-align: center;
 		  background-color:none;
@@ -58,8 +60,8 @@
 		  padding: 14px 16px;
 		  font-weight:bold;
 		  font-size: 20px;
-		  width:15%;
-		  margin-left:30px;
+		  width:10%;
+		  margin-left:3%;
 		  border-radius:12px;
 		}
 
@@ -121,7 +123,7 @@
 		  padding: 14px 16px;
 		  font-weight:bold;
 		  font-size: 20px;
-		  margin-right:10px;
+		  margin-right:10%;
 		  border-radius:12px;
 		  
 		}

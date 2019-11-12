@@ -1,0 +1,109 @@
+*{
+	border-collapse: collapse;
+	font-family: Times New Roman;
+}
+
+td,tr{
+	
+	height: 30px;
+	
+}
+
+
+th{
+	border:none;
+	color:white;
+	background-color: #101f3d;
+	font-size:20px;
+}
+#qtyitm
+{
+	width:45%;
+	text-align:left;
+	
+}
+
+th,td,tr{
+	text-align: left;
+	vertical-align: middle;
+	padding:10px;
+	
+}
+table{
+	border:none;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+}
+
+#total2{
+	border-top:1px solid grey;
+	background-color: white;
+	color:black;
+	font-size:20px;
+}
+
+.total{
+	border-top:1px solid black;
+	background-color: white;
+	font-weight:bold;
+	color:black;
+	font-size:20px;
+}
+
+
+
+.top{
+	border-top:1px solid black;
+}
+#title{
+	text-align:center;
+	border-bottom:1px solid black;
+	font-size:30px;
+	font-weight:bold;
+	padding-top:30px;
+}
+
+#clockDisplay{
+	
+	font-size:16px;
+	
+}
+#fullbody{
+	width:30%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#orderid{
+	width:30%;
+}
+#receive{
+	width:30%;
+	
+}
+
+		#btn{
+		  border-color:white;
+		  border-style:outset;
+		  outline: none;
+		  background-color:#101f3d;
+		  color:white;
+		  padding:6px 6px;
+		  font-weight:bold;
+		  font-size: 14px;
+		 
+		
+		  border-radius:12px;
+		
+		}
+		#btn:hover{
+			 background-color: white;
+		  border-color:#101f3d;
+		  color:black;
+		}
+		#member{
+			
+			
+			
+		}
+		

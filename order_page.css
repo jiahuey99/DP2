@@ -8,7 +8,7 @@
 td,tr{
 	border-left:1px solid black;
 	border-right:1px solid black;
-	height: 30px;
+	height: 10px;
 	background-color:#f5f6fa;;
 }
 
@@ -36,8 +36,8 @@ table{
 	border:none;
 	width:55%;
 			border-collapse: collapse;
-			margin-left:auto;
-		  margin-right:auto;
+			margin-left:30%;
+		  
 }
 #smallth{
 	width:15%
