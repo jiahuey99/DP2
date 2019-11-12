@@ -6,26 +6,26 @@
 <html>
 <head>
 <title>Order Details</title>
-<link rel="stylesheet" href="order_css.css?o={random number/string}">
+<link rel="stylesheet" href="order_page.css?b={random number/string}">
+</head>
+<body>
+<?php include'navigation.php'?>
 <script type="text/javascript">
 function confirm_click()
 {
 return confirm("Are you sure you want to delete order?");
 }
 </script>
-</head>
-<header>
-	<?php include'navigation.php'?>
-</header>
-<body>
-<h1>Order Details</h1>
+<div id=title>Order Details</div>
+</br>
+<div id=fulltable>
 <table>
 <tr>
-	<th>Order ID</th>
-	<th>Table ID</th>
-	<th>Food Name</th>
-	<th>Quantity</th>
-	<th>Subtotal</th>
+	<th id=smallth>Order ID</th>
+	<th id=smallth>Table</th>
+	<th id=bigth>Food Name</th>
+	<th id=smallth>Quantity</th>
+	<th id=smallth>Subtotal</th>
 	
 </tr>
 <?php
@@ -49,8 +49,12 @@ return confirm("Are you sure you want to delete order?");
 
 				} while($roww = $xx->fetch_assoc());
 				
-			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total2'>".$float_total."</td><td class='icon'> <a href='edit.php?orderid=$row[orderid]'><img src='edit.png' alt='edit' height='20px'></a></td><td class='icon'><a href='delete_order.php?orderid=$row[orderid]' onclick='return confirm_click();'><img src='cross.png' alt='delete' height='20px'></a></td><td class='icon'><a href='paymentsy.php?orderid=$row[orderid]'><img src='pay.png' alt='payment' height='20px'></a></td>";
-		}
+			echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td>
+				<td class='total' id='total2'>".$float_total."</td>
+				<td id=icon> <a href='edit.php?orderid=$row[orderid]'><img src='edit.png' width='30' height='30'></a></td>
+				<td id=icon><a href='delete_order.php?orderid=$row[orderid]' onclick='return confirm_click();'><img src='cross.png' width='28' height='28'></a></td>
+				<td id=icon><a href='paymentsy.php?orderid=$row[orderid]'><img src='pay.png' width='30' height='30'></a></td>";
+			}
 		
 		echo "</table>";
 	}else{
@@ -59,6 +63,6 @@ return confirm("Are you sure you want to delete order?");
 	$conn->close()
 ?>
 </table>
-	
+	</div>
 </body>
 </html>

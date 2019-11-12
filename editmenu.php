@@ -4,68 +4,17 @@
 	<title>Menu List</title>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style>
-		#editDIV {
-		  
-		  display: none;
-		}
-		#removeDIV {
-		 
-		  display:none;
-		}
-		</style>
+		<link rel="stylesheet" href="edimenu.css?c={random number/string}">
 	</head>
 	
+	
 	<body>
-
-		<div id="menulist">
-			
-			<table>
-				<tr>
-					<th> No</th>
-					<th> Name</th>
-					<th> price</th>
-					<th> category</th>
-					<th> Discount</th>
-					<th></th>
-					
-				</tr>
-			<?php
-			$conn=mysqli_connect("localhost","root","","menu");
-			if($conn->connect_error){
-				die("Connection failed:".$conn->connect_error);
-			}
-			$sql= "SELECT ITEMNO,name,price,category,discount from menuitems ";
-			$result =$conn ->query($sql);
-			
-			if($result-> num_rows>0){
-				while($row=$result->fetch_assoc()){
-					echo "<tr>
-					<td>".$row["ITEMNO"]."</td>
-					<td>".$row["name"]."</td>
-					<td>".$row["price"]."</td>
-					<td>".$row["category"]."</td>
-					<td>" .$row["discount"]."</td>
-					</tr>";
-				}
-				echo"</table>";
-			}
-			else{
-				echo "0 result ";
-			}
-			
-			
-				$conn->close();
-			?>
-			</table>
-			</br>
-			
-		</div>
+	
+	<?php include'navigation.php'?>
+	
 		
-		<div class="edit">
-			<button onclick="btn('edit')">Edit</button>
-			<button onclick="btn('remove')">Remove</button>
-		</div>
+		
+		
 		
 		<script>
 			function btn(actions) {
@@ -90,10 +39,10 @@
 				  }
 			}
 			}
-
+			
 
 	</script>
-	<?php
+	<?php		
 		if(isset($_POST['delete'])) {
 			
 			$conn=mysqli_connect("localhost","root","","menu");
@@ -126,18 +75,20 @@
 			$item_discount=$_POST['item_discount'];
 			$item_category=$_POST['item_category'];
 			$itemimg = $_POST['image'];
-				$image= $_FILES['image']['name'];
+				
 			
-			$add = mysqli_query($conn,"SELECT * FROM menuitems WHERE name='$itemname'");
+			$add = mysqli_query($conn,"SELECT * FROM menuitems WHERE name='$item_name'");
 			if($add->num_rows==0){
 			$sql = "UPDATE menuitems SET name='$item_name',price='$item_price', discount='$item_discount', category='$item_category',img='$itemimg' WHERE ITEMNO = $item_no" ;
 			mysqli_query($conn,$sql);
-		 
+			
 			}else{
 				die("The item has already exist");
 			}
-	
 			header("Location: editmenu.php?edit=success");
+			$conn->close();
+			#header("Location: editmenu.php?edit=success");
+			
           #  $sql = "UPDATE menuitems SET name='$item_name',price='$item_price', discount='$item_discount', category='$item_category',img='$image' WHERE ITEMNO = $item_no" ;
            
            # $retval = $conn ->query($sql);
@@ -150,28 +101,58 @@
             #header("Location: editmenu.php?delete=success");
 			 
 		 }
-		 else {
-		?>
+		 
+      ?>
+		
+	<section>
+		<div class="editremove">
+			<button onclick="btn('edit')">Edit</button>
+			<button onclick="btn('remove')">Remove</button>
+			</br></br></br></br></br>
+		</div>
 		<div id="editDIV">
 			<form method = "post" >     
-                   </br>
+                   
 				   
-                        item no
-                        <input name = "item_no" type = "text" 
-                           id = "item_no">
+                        
+                        
+					
+					<fieldset>
 					</br>
-					</br>
-					<b>Edit :</b>
-						</br>
-						</br>
+					<legend>
+					
+					Edit Item
+					</legend>
+						
+						<?php						  
+						 $conn=mysqli_connect("localhost","root","","menu");
+						if($conn->connect_error){
+								die("Connection failed:".$conn->connect_error);
+						}
+				
+						$sql= "SELECT ITEMNO FROM menuitems";
+						$result =$conn ->query($sql);
+						if($result->num_rows>0){
+						echo "ITEM No: <select name='item_no'>";
+						while($row=$result->fetch_assoc())
+						{
+							$itm=$row['ITEMNO'];
+						echo 
+					
+							"<option value='$itm'>$itm</option>";
+						}
+						echo "</select>";
+						}
+                     $conn->close();
+                 ?>
+				 </br></br>
 						Name
-						<input name = "item_name" type = "text" 
-                           id = "item_name">
+						<input name = "item_name" type = "text" id = "item_name" >
 					</br>
 					</br>
 					Price 
 					<input name = "item_price" type = "text" 
-                           id = "item_price">
+                           id = "item_price" placeholder="0.00" size="5">
 					</br>
 					</br>
 					
@@ -184,7 +165,7 @@
 					</br>
 					Discount
 					<input name = "item_discount" type = "text" 
-                           id = "discount">
+                           id = "discount" placeholder="0.00" size="5">
                      
                      </br>
                      </br>
@@ -193,46 +174,96 @@
 						<input type="file" name="image" id="image">
 					 </br>
                      </br>
-                       <input name = "edit" type = "submit" id = "edit" value = "Submit">
+                       <input name = "edit" type = "submit" id = "deletebtn" value = "Save">
 
-                  </table>
+                 </fieldset>
                </form>
 		
 		
 		</div>
 		<div id="removeDIV">
-			<form method = "post" >     
-                     <tr>
-					 <b>Removing Item:</b></br></br>
-                        <td width = "100">Item No: </td>
-                        <td><input name = "item_no" type = "text" 
-                           id = "item_no"></td>
-                     </tr>
+			<form method = "post" >
+			<fieldset id=removefs>			
+                     <legend>Remove Item</legend>
+					  </br>
+					
+				<?php						  
+						 $conn=mysqli_connect("localhost","root","","menu");
+						if($conn->connect_error){
+								die("Connection failed:".$conn->connect_error);
+						}
+				
+						$sql= "SELECT ITEMNO FROM menuitems";
+						$result =$conn ->query($sql);
+						if($result->num_rows>0){
+						echo "ITEM No: <select name='item_no'>";
+						while($row=$result->fetch_assoc())
+						{
+							$itm=$row['ITEMNO'];
+						echo 
+					
+							"<option value='$itm'>$itm</option>";
+						}
+						echo "</select>";
+						}
+                     $conn->close();
+                 ?>
+				 
+                     </br> </br>
+                     <input name = "delete" type = "submit"  id = "deletebtn" value = "Remove">
                      
-                     <tr>
-                        <td width = "100"> </td>
-                        <td> </td>
-                     </tr>
                      
-                     <tr>
-                        <td width = "100"> </td>
-                        <td>
-                           <input name = "delete" type = "submit"  id = "delete" value = "Confirm">
-                        </td>
-                     </tr>
-                     
-                  </table>
+                 
+				  </fieldset>
                </form>
 		
 		
 		</div>
 		
+		</section>
+		<div id="menulist">
+			<table>
+				<tr>
+					<th> No</th>
+					<th> Name</th>
+					<th> Price</th>
+					<th> Category</th>
+					<th> Discount</th>
+					
+					
+					
+				</tr>
 			<?php
+			$conn=mysqli_connect("localhost","root","","menu");
+			if($conn->connect_error){
+				die("Connection failed:".$conn->connect_error);
+			}
+			$sql= "SELECT ITEMNO,name,price,category,discount from menuitems ";
+			$result =$conn ->query($sql);
 			
-         }
-      ?>
-		
-	
+			if($result->num_rows>0){
+				while($row=$result->fetch_assoc()){
+					echo "<tr>
+					<td class=itemno>".$row["ITEMNO"]."</td>
+					<td>".$row["name"]."</td>
+					<td>RM  ".$row["price"]."</td>
+					<td>".$row["category"]."</td>
+					<td id=distd>".$row["discount"]."</td>
+					
+					</tr>";
+					#<td id=removebtn><img src='cross.png' width='20' height='20'></td>
+				}
+				echo"</table>";
+			}
+			else{
+				echo "0 result ";
+			}
+				
+			?>
+			</table>
+			</br>
+			
+		</div>
 		
 
 	</body>
