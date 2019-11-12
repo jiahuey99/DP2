@@ -1,0 +1,143 @@
+		*{
+			font-family: Times New Roman;
+		}
+		body{
+			background-color:white;
+		}
+		
+		#foodDIV {
+		  width: 30%;
+		  height: 99%;
+		  text-align: center;
+		  background-color:none;
+		  
+		  display: none;
+		  margin-left:auto;
+		  margin-right:auto;
+		}
+		
+		#bevDIV2 {
+		  width: 30%;
+		  height: 99%;
+		  text-align: center;
+		  background-color:none;
+		  
+		  display: none;
+		  margin-left:auto;
+		  margin-right:auto;
+		}
+
+		#menuNav {
+		  
+		  border: 1px solid #ccc;
+		  background-color: #f1f1f1;
+		}
+
+		/* Style the buttons inside the tab */
+		.menuNav button {
+		  
+		  float: left;
+		  border-color:white;
+		  border-style:outset;
+		  outline: none;
+		  background-color:#101f3d;
+		  color:white;
+		  padding: 14px 16px;
+		  font-weight:bold;
+		  font-size: 20px;
+		  width:15%;
+		  margin-left:30px;
+		  border-radius:12px;
+		}
+
+		/* Change background color of buttons on hover */
+		.menuNav button:hover {
+		  background-color: white;
+		  border-color:#101f3d;
+		  color:black;
+		}
+		th {
+		  padding-top: 25px;
+		  padding-bottom: 12px;
+		  width:10%;
+		  font-size: 18px;
+		  color: white;
+		  background-color:#101f3d;
+		  text-decoration:underline;
+		 
+		}
+		#removebtn{
+			border-left:none;
+			width:3%;
+			text-align:left;
+		}
+		
+		#qty{
+			width:5%;
+			padding:1px;
+			border-right:none;
+		}
+		
+		#qtyth{
+			width:5%;
+			padding-right:1px;
+		}
+		
+		#removeth{
+			
+			width:3%;
+			text-align:left;
+		}
+		
+		
+		#btn{
+		 margin-top:10px;
+		 
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  
+		  float:right;
+		   border-color:white;
+		  border-style:outset;
+		  outline: none;
+		  background-color:#101f3d;
+		  color:white;
+		  padding: 14px 16px;
+		  font-weight:bold;
+		  font-size: 20px;
+		  margin-right:10%;
+		  border-radius:12px;
+		  
+		}
+		#btn:hover{
+			background-color: white;
+		  color:black;
+		  border-color:#101f3d;
+		}
+		td{
+			background-color:white;
+			border:1px solid grey;
+			border-collapse: collapse;
+			margin-left:5px;
+			margin-right:5px;
+			text-align:center;
+			
+		}
+		table{
+			margin-top:30px;
+			border:1px solid grey;
+			border-collapse: collapse;
+			margin-left:auto;
+		  margin-right:auto;
+		}
+		#price{
+			width:30%;
+			border:none;
+			background-color:white;
+			text-align:center;
+		}
+		input[type=number]{
+			width:40%;
+			
+		}

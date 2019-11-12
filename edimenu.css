@@ -1,0 +1,136 @@
+		*{
+			font-family: Times New Roman;
+		}
+		section{
+			float:right;
+			
+			width:40%;
+			padding-top:50px;
+			
+			
+		}
+		fieldset{
+			border:1.5px solid #101f3d;
+			width:50%;
+		}
+		#removefs{
+				width:227px;
+				
+		}
+		
+		#menulist{
+			width:40%;
+			margin-left:10%;
+			 text-align: center;
+			 padding-top:50px;
+			
+		}
+		
+		#menulist tr:nth-child(even){background-color:#f5f6fa;}
+		#menulist tr:nth-child(odd){background-color:white;}
+		td{
+			
+			border:1px solid grey;
+			border-collapse: collapse;
+			margin-left:5px;
+			margin-right:5px;
+		}
+		table{
+			
+			border:none;
+			border-collapse: collapse;
+			margin-left:auto;
+		  margin-right:auto;
+		}
+		th{
+			background-color:#101f3d;
+			color:white;
+			
+			 padding-top: 25px;
+		  padding-bottom: 12px;
+		  padding-right:15px;
+		  
+		  width:21%;
+		  font-size: 18px;
+		  border:1px solid #101f3d ;
+		  
+		  text-decoration:underline;
+			
+		}
+		#removebtn{
+			background-color:white;
+			width:20%;
+			border:none;
+			text-align:right;
+			margin-left:5px;
+			margin-right:5px;
+		}
+		#removeth{
+			color:white;
+			background-color:white;
+		}
+		
+		/* Style the buttons inside the tab */
+		.editremove{
+			height:10vh;
+		
+		}
+		.editremove button {
+	
+		  border-color:white;
+		  border-style:outset;
+		  outline: none;
+		  background-color:#101f3d;
+		  color:white;
+		  padding: 14px 16px;
+		  font-weight:bold;
+		  font-size: 20px;
+		 width:110px;
+		  margin-left:15px;
+		  border-radius:12px;
+		}
+
+		/* Change background color of buttons on hover */
+		.editremove button:hover {
+		  background-color: white;
+		  border-color:#101f3d;
+		  color:black;
+		}
+		
+		#editDIV {
+			margin-left:5%;
+		  width:260px;
+		  display: none;
+		  background-color:#f5f6fa;
+		  border-radius:10px;
+		  border:2px solid white;
+		}
+		#removeDIV {
+			margin-left:5%;
+		  width:260px;
+		  display:none;
+		   background-color:#f5f6fa;
+		  border-radius:10px;
+		  border:2px solid white;
+		  
+		}
+		#deletebtn{
+			 border-color:white;
+		  border-style:outset;
+		  outline: none;
+		  background-color:#101f3d;
+		  color:white;
+		  padding:6px 6px;
+		  font-weight:bold;
+		  font-size: 14px;
+		  width:100px;
+		  margin-left:15px;
+		  border-radius:12px;
+		  float:right;
+		}
+		#deletebtn:hover{
+			 background-color: white;
+		  border-color:#101f3d;
+		  color:black;
+		}
+		
