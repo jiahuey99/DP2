@@ -127,9 +127,7 @@
 			?>
 			</table>
 		</div>
-		<h1> TESTING </h1>
-		
-		<?php echo "<input type='number' id='tableid' name='idtable'>"; ?>
+		<?php echo "<input type='hidden' id='tableid' name='idtable'>"; ?>
 
 
 		<button id="btn" type="submit">Add Order</button>
