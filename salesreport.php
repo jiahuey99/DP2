@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>Order Details</title>
-<link rel="stylesheet" href="salesreport.css?n={random number/string}">
+<link rel="stylesheet" href="salesreport.css?kkddj={random number/string}">
 </head>
 <header>
 	<?php include'navigation.php'?>
@@ -74,18 +74,74 @@
 	for($yyy=0;$yyy<count($arrrrr);$yyy++){
 		$amounttttttt = $amounttttttt + floatval($arrrrr[$yyy]);
 	}
-	echo '<table id="box"><tr><td class="haaa"></td><td class="names" colspan=2>';
+	$highest=0;
+	for($hahaha=0;$hahaha<count($arr);$hahaha++){
+		$height="";
+		if($quantityttt == 0){
+			$height = 0;
+		}else{
+			$height = round(($arrr[$hahaha]/($quantityttt+$amounttttttt))*100,3);
+		}
+		$strheight = strval($height*10);
+		
+		$height2="";
+		if($amounttttttt == 0){
+			$height2 = 0;
+		}else{
+			$height2 = round(($arrrrr[$hahaha]/($amounttttttt+$quantityttt))*100,3);
+		}
+		$strheight2 = strval($height2*10);
+		
+		if(floatval($strheight)>$highest){
+			$highest = floatval($strheight);
+		}
+		if(floatval($strheight2)>$highest){
+			$highest = floatval($strheight2);
+		}
+	}
+	$high=0;
+	for($hohoho=0;$hohoho<count($arrrrr);$hohoho++){
+		if($arrrrr[$hohoho]> $high){
+			$high = $arrrrr[$hohoho];
+		}
+	}
+	$www = (count($arrrrr)+1.5)*80;
+	$strwww = strval($www);
+	$strwww .= "px";
+	$forhui = strval(($www*0.5)*-1);
+	$forhui .= "px";
+	$huihuihui = 'margin-left:';
+	$huihuihui .= $forhui;
+	$strhhh = strval($highest+6);
+	$strhhh .="px";
+	$strhighest = (strval(($highest/5)-2));
+	$strhighest .="px";
+	$hhh= ($amounttttttt+$quantityttt)/5;
+	$high1= $high*0.2;
+	$high2= $high*0.4;
+	$high3= $high*0.6;
+	$high4= $high*0.8;
+	$high5= $high*1;
+	$strhhhh = floatval($strhhh)+150;
+	
+	echo '<table id="front" height='.$strhhh.' width='.$strwww.' style='.$huihuihui.'><tr><td class="alignment">'.$high1.'</td></tr><tr><td class="alignment">'.$high2.'</td></tr><tr><td class="alignment">'.$high3.'</td></tr><tr><td class="alignment">'.$high4.'</td></tr><tr><td class="alignment">'.$high5.'</td></tr></table>';
+	echo '<table id="borbor" height='.$strhhhh.' width='.$strwww.' style='.$huihuihui.'><tr><td></td></tr></table>';
+	echo '<table id="box"><tr id="whay"><td class="haaa"></td><td class="names" colspan=2>';
 	for($hehe=0;$hehe<count($arr);$hehe++){
 		echo '<p class="graphnames">'.$arr[$hehe].'</p>';
 	}
-	echo '</td></tr><tr><td class="haa">Quantity</td><td class="valuess">';
+	echo '</td></tr><tr><td class="haa">';
 	
+	
+	
+	
+	echo '</td><td class="valuess">';
 	for($nono = 0; $nono<count($arrr); $nono++){
 		$height="";
 		if($quantityttt == 0){
 			$height = 0;
 		}else{
-			$height = round(($arrr[$nono]/$quantityttt)*100,3);
+			$height = round(($arrr[$nono]/($quantityttt+$amounttttttt))*100,3);
 		}
 		$strheight = strval($height*10);
 		$strheight .="px";
@@ -94,7 +150,7 @@
 		if($amounttttttt == 0){
 			$height2 = 0;
 		}else{
-			$height2 = round(($arrrrr[$nono]/$amounttttttt)*100,3);
+			$height2 = round(($arrrrr[$nono]/($amounttttttt+$quantityttt))*100,3);
 		}
 		$strheight2 = strval($height2*10);
 		$strheight2 .="px";
@@ -197,6 +253,8 @@
 	}
 	echo '<td>'.$tttt.'</td>';
 	echo '</tr></table>';
+	
+	
 	$tt1=0;
 	$tt2=0;
 	for($lolo=0;$lolo<count($dayitemarray);$lolo++){
@@ -207,30 +265,85 @@
 	}
 	
 	
-	
-	echo '<table id="box"><tr><td class="haaa"></td><td class="names" colspan=2>';
+	$amounttttttt = 0;
+	for($yyy=0;$yyy<count($daytarray);$yyy++){
+		$amounttttttt = $amounttttttt + floatval($daytarray[$yyy]);
+	}
+	$highest=0;
+	for($hahaha=0;$hahaha<count($dayitemarray);$hahaha++){
+		$height="";
+		if($quantityttt == 0){
+			$height = 0;
+		}else{
+			$height = round(($dayitemarray[$hahaha]/($quantityttt+$amounttttttt))*100,3);
+		}
+		$strheight = strval($height*10);
+		
+		$height2="";
+		if($amounttttttt == 0){
+			$height2 = 0;
+		}else{
+			$height2 = round(($daytarray[$hahaha]/($amounttttttt+$quantityttt))*100,3);
+		}
+		$strheight2 = strval($height2*10);
+		
+		if(floatval($strheight)>$highest){
+			$highest = floatval($strheight);
+		}
+		if(floatval($strheight2)>$highest){
+			$highest = floatval($strheight2);
+		}
+	}
+	$high=0;
+	for($hohoho=0;$hohoho<count($daytarray);$hohoho++){
+		if($daytarray[$hohoho]> $high){
+			$high = $daytarray[$hohoho];
+		}
+	}
+	$www = (count($datearray)+1.5)*80;
+	$strwww = strval($www);
+	$strwww .= "px";
+	$forhui = strval(($www*0.5)*-1);
+	$forhui .= "px";
+	$huihuihui = 'margin-left:';
+	$huihuihui .= $forhui;
+	$strhhh = strval($highest+6);
+	$strhhh .="px";
+	$strhighest = (strval(($highest/5)-2));
+	$strhighest .="px";
+	$hhh= ($amounttttttt+$quantityttt)/5;
+	$high1= $high*0.2;
+	$high2= $high*0.4;
+	$high3= $high*0.6;
+	$high4= $high*0.8;
+	$high5= $high*1;
+	$strhhhh = floatval($strhhh)+150;
+	echo '<table id="front" height='.$strhhh.' width='.$strwww.' style='.$huihuihui.'><tr><td class="alignment">'.$high1.'</td></tr><tr><td class="alignment">'.$high2.'</td></tr><tr><td class="alignment">'.$high3.'</td></tr><tr><td class="alignment">'.$high4.'</td></tr><tr><td class="alignment">'.$high5.'</td></tr></table>';
+	echo '<table id="borbor" height='.$strhhhh.' width='.$strwww.' style='.$huihuihui.'><tr><td></td></tr></table>';
+	echo '<table id="box"><tr id="whay"><td class="haaa"></td><td class="names" colspan=2>';
 	for($hehe=0;$hehe<count($datearray);$hehe++){
 		echo '<p class="graphnames">'.$datearray[$hehe].'</p>';
 	}
-	echo '</td></tr><tr><td class="haa">Quantity</td><td class="valuess">';
+	
+	echo '</td></tr><tr><td class="haa"></td><td class="valuess">';
 	
 	for($nono = 0; $nono<count($datearray); $nono++){
 		$height="";
 		if($tt1==0){
 			$height = 0;
 		}else{
-			$height = round(($dayitemarray[$nono]/$tt1)*100,3);
+			$height = round(($dayitemarray[$nono]/($tt1+$tt2))*100,3);
 		}
-		$strheight = strval($height*5);
+		$strheight = strval($height*10);
 		$strheight .="px";
 		
 		$height2="";
 		if($tt2==0){
 			$height2 = 0;
 		}else{
-			$height2 = round(($daytarray[$nono]/$tt2)*100,3);
+			$height2 = round(($daytarray[$nono]/($tt2+$tt1))*100,3);
 		}
-		$strheight2 = strval($height2*5);
+		$strheight2 = strval($height2*10);
 		$strheight2 .="px";
 		echo '<table id="graph" >';
 		echo '<tr>';
@@ -244,6 +357,8 @@
 		echo '</table>';
 	}
 	echo '</td></tr><tr><td class ="concon" colspan=2><p class="light"></p><p>:Total items of Day</p><p class="dark"></p><p>:Total Price of Day</p></td></tr></table>';
+	
+	
 ?>
 
 
