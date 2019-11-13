@@ -166,8 +166,7 @@
 
 
 	function myFunction(e) {
-    document.getElementById('tableid').value = e.target.value
-	console.log('yooo')
+	document.getElementById('tableid').value = e.target.value
 }
 	</script>
 
