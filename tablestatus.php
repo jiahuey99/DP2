@@ -44,7 +44,16 @@
                 echo "<tr> <td>".$rowocc['idtable']."</td> <td>".$occupied."</td></tr>";
             }
 
-            $sqlfree = mysqli_query($conn,"SELECT idtable FROM tableid WHERE NOT EXISTS(SELECT o.idtable FROM ORDERDB AS o ON o.orderid = r.idTABLE");
+            $free = "Unoccupied";
+            
+            $sqlfree = mysqli_query($conn,"SELECt idtable FROM tabledb t WHERE idtable NOT IN (SELECT DISTINCT t.idtable FROM tabledb t
+            INNER JOIN orderdb o ON o.idtable = t.idtable) && idtable NOT IN (SELECT DISTINCT t.idtable FROM tabledb t
+            INNER JOIN reservation r ON r.idtable = t.idtable)");
+            while($rowfree = $sqlfree->fetch_assoc())
+            {
+                echo "<tr> <td>".$rowfree['idtable']."</td><td>".$free."</td></tr>";
+            }
+            echo"</table>";
 ?>
 </table>
 </body>
