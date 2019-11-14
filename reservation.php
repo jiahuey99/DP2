@@ -48,7 +48,7 @@
 						<td> <input type='date' name='dateee'> </td></tr> </table>";
 	?>
 
-			<button id="btn" type="submit">Add Order</button>
+			<button id="btn" type="submit">Reserve</button>
 			</form>
 
 <script>
