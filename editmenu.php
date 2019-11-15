@@ -45,7 +45,7 @@
 	<?php		
 		if(isset($_POST['delete'])) {
 			
-			$conn=mysqli_connect("localhost","root","","menu");
+			$conn=mysqli_connect("localhost","root","","tabletable");
 			if($conn->connect_error){
 				die("Connection failed:".$conn->connect_error);
 			}
@@ -65,7 +65,7 @@
            
          }
 		 else if(isset($_POST['edit'])){
-			$conn=mysqli_connect("localhost","root","","menu");
+			$conn=mysqli_connect("localhost","root","","tabletable");
 			
 			
 			
@@ -125,7 +125,7 @@
 					</legend>
 						
 						<?php						  
-						 $conn=mysqli_connect("localhost","root","","menu");
+						 $conn=mysqli_connect("localhost","root","","tabletable");
 						if($conn->connect_error){
 								die("Connection failed:".$conn->connect_error);
 						}
@@ -188,7 +188,7 @@
 					  </br>
 					
 				<?php						  
-						 $conn=mysqli_connect("localhost","root","","menu");
+						 $conn=mysqli_connect("localhost","root","","tabletable");
 						if($conn->connect_error){
 								die("Connection failed:".$conn->connect_error);
 						}
@@ -234,7 +234,7 @@
 					
 				</tr>
 			<?php
-			$conn=mysqli_connect("localhost","root","","menu");
+			$conn=mysqli_connect("localhost","root","","tabletable");
 			if($conn->connect_error){
 				die("Connection failed:".$conn->connect_error);
 			}
