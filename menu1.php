@@ -50,7 +50,9 @@
 					<th> </th>
 					<th>Items</th>
 					<th>Unit Price</th>
-					<th id=qtyth >Quantity</th>					
+					<th id=qtyth >Quantity</th>	
+					<th>Discount</th>
+					<th>Comment</th>
 					<th id=removeth></th>
 				</tr>
 			<?php
@@ -71,6 +73,8 @@
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td>RM    ".$row["price"]."</td>
 						<td id=qty><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]'></td>
+						<td><input type='text' rows='1' cols='50' name='order[".$row['itemno']."][comment]'></td>
 						<td id=removebtn><img src='cross.png' width='20' height='20' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
 				}
@@ -93,6 +97,8 @@
 					<th>Items</th>
 					<th>Unit Price</th>
 					<th id=qtyth >Quantity</th>
+					<th>Discount</th>
+					<th>Comment</th>
 					<th id=removeth></th>
 					
 
@@ -115,6 +121,8 @@
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td>RM    ".$row["price"]."</td>
 						<td id=qty><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]'></td>
+						<td><input type='text' rows='1' cols='50' name='order[".$row['itemno']."][comment]'></td>
 						<td id=removebtn><img src='cross.png' width='20' height='20' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
 				}

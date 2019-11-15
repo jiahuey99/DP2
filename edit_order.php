@@ -10,12 +10,15 @@
 
     // Remove Empty items from the menu
     $orderItems = array_filter($_POST['order'], function($orderItem) {
-        return $orderItem['quantity'] != null && $orderItem['quantity'] != 0;
+        return $orderItem['quantity'] != null && $orderItem['quantity'] != 0
+			&& $orderItem['discount'] != null	&& $orderItem['discount'] !=0;
     });
     $sql = '';
     foreach ($orderItems as $itemno => $orderItem) {
         $subtotal = $orderItem['price'] * $orderItem['quantity'];
         $sql .= "UPDATE orderdb SET qty = ".$orderItem['quantity'].", subtotal = ".$subtotal." WHERE orderid = ".$oid." AND itemno = ".$itemno.";";
+			$sql .="UPDATE orderdb SET discount = ".$orderItem['discount'].",subtotal = ".$subtotal." WHERE orderid = ".$oid." AND itemno = ".$itemno.";";
+		$sql .="UPDATE orderdb SET comment = ".$orderItem['comment'].",subtotal = ".$subtotal." WHERE orderid = ".$oid." AND itemno = ".$itemno.";";
     }
 
     $deletedItems = array_filter($_POST['order'], function($orderItem) {

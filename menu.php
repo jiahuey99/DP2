@@ -72,14 +72,17 @@
 				<tr>
 					<th>Items</th>
 					<th>Unit Price</th>
-					<th>Qty</th>					
+					<th>Qty</th>	
+					<th>Discount</th>
 					<th> Remove Item</th>
+				
 				</tr>
 			<?php
 			$conn=mysqli_connect("localhost","root","","tabletable");
 			if($conn->connect_error){
 				die("Connection failed:".$conn->connect_error);
 			}
+				//get the data from menuitems
 			$sql= "SELECT itemno,name,price from menuitems where category='Food'";
 			$result =$conn ->query($sql);
 			//$resulttable = $conn->query($sqltable);
@@ -89,14 +92,20 @@
 					echo "<tr>
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td><input type='number' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
+						
 						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]'></td>
+						
 						<td><input type='button' value='x' onclick='removeItem(".$row['itemno'].")'></td>
+					
 					</tr>";
+					
 
 				}
 				echo"</table>";
 				$sqltable=mysqli_query($conn, "SELECT idtable FROM tabledb");
 				echo "<select name='id'>";
+				
 				while($rowtable = $sqltable->fetch_assoc())
 				{
 					echo 
@@ -111,8 +120,13 @@
 			$conn->close();
 			?>
 			</table>
+			
 			<button type="submit">Add Order</button>
+			
+		<textarea name='comment' rows='10' cols='50'></textarea>
+
 		</div>
+			
 		<div id="bevDIV2">
 			
 			<table>
@@ -120,7 +134,9 @@
 					<th>Items</th>
 					<th>Unit Price</th>
 					<th>Qty</th>
+					<th>discount</th>
 					<th>Remove item</th>
+					
 
 				</tr>
 			<?php
@@ -137,11 +153,18 @@
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td><input type='text' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
 						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]'></td>
-						<td><input type='button' value='x'></td>
-					</tr>";
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]'></td>
+						
+						<td><input type='button' value='x' onclick='removeItem(".$row['itemno'].")'></td></tr>";
+				
+				
+					
 				}
+				
 				echo"</table>";
-				echo"</table>";
+		
+	
+				
 				$sqltable=mysqli_query($conn, "SELECT idtable FROM tabledb");
 				echo "<select name='id'>";
 				while($rowtable = $sqltable->fetch_assoc())
@@ -157,10 +180,15 @@
 			}
 			$conn->close();
 			?>
-	
 			</table>
+			
 			<button type="submit">Add Order</button>
-
+			
+			<textarea name='comment' rows='10' cols='50'></textarea>
+			
+			
+		
+		
 		</div>
 		</form>
 
@@ -193,9 +221,13 @@
 	function removeItem(item){
 		document.getElementsByName('order['+item+'][quantity]')[0].value = '';	
 	}
+	
 
 	</script>
-
+		
+	
+	
+						
 	</body>
 </html>
 

@@ -99,7 +99,7 @@
 			{
 				//reading to other page
 				//link to next page menu
-				header("Location:menu.php");
+				header("Location:menu1.php");
 				
 				
 			}

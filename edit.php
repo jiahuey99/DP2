@@ -8,7 +8,40 @@ function getQty($results, $itemno) {
 		}
 	}
 	return $qty;
+	
+	
 }
+
+function getDis($results, $itemno) {
+	$discount = NULL;
+	foreach ($results as $result) {
+		if ($result['itemno'] == $itemno) {
+			$discount = $result['discount'];
+			break;
+		}
+	}
+	return $discount;
+	
+	
+}
+
+function getMemo($results, $itemno) {
+	$comment = NULL;
+	foreach ($results as $result) {
+		if ($result['itemno'] == $itemno) {
+			$comment = $result['comment'];
+			break;
+		}
+	}
+	return $comment;
+	
+	
+}
+	
+	
+	
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +79,9 @@ function getQty($results, $itemno) {
 		<form method="post" action="edit_order.php">
 		<?php
 			echo "<input type='hidden' name='orderID' value='".$oid."'>";
-			$sqledit = "SELECT itemno,qty FROM orderdb where orderid = $oid";
+			
+			//
+			$sqledit = "SELECT itemno,qty,discount,comment FROM orderdb where orderid = $oid";
 			$resultedit = $conn->query($sqledit);
 			$resultedit = $resultedit->fetch_all(MYSQLI_ASSOC);
 			
@@ -58,7 +93,9 @@ function getQty($results, $itemno) {
 					
 					<th>Items</th>
 					<th>Unit Price</th>
-					<th id=qtyth >Quantity</th>					
+					<th id=qtyth >Quantity</th>	
+					<th>Discount</th>
+					<th>Comment</th>
 					<th id=removeth></th>
 				</tr>
 				
@@ -76,6 +113,10 @@ function getQty($results, $itemno) {
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td >RM  <input id=price type='number' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
 						<td id=qty ><input type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]' value='".getQty($resultedit,$row['itemno'])."'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]' value='".getDis($resultedit,$row['itemno'])."'></td>
+						
+						<td><input type='text' rows='1' cols='50' name='order[".$row['itemno']."][comment]' value='".getMemo($resultedit,$row['itemno'] )."' ></td>
+						
 						<td id=removebtn><img src='cross.png' width='20' height='20' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
 				} 
@@ -97,6 +138,8 @@ function getQty($results, $itemno) {
 					<th>Items</th>
 					<th>Unit Price</th>
 					<th id=qtyth >Quantity</th>
+					<th>Discount</th>
+					<th>Comment</th>
 					<th id=removeth></th>
 				</tr>
 			<?php
@@ -113,6 +156,10 @@ function getQty($results, $itemno) {
 						<td><input type='hidden' name='order[".$row['itemno']."][itemno]' value='".$row['itemno']."'>".$row["name"]."</td>
 						<td>RM  <input id=price type='number' readonly name='order[".$row['itemno']."][price]' value='".$row['price']."'></td>
 						<td id=qty><input  type='number' min='0' step='1' name='order[".$row['itemno']."][quantity]' value='".getQty($resultedit,$row['itemno'])."'></td>
+						<td><input type='number' min='0' step='1' name='order[".$row['itemno']."][discount]' value='".getDis($resultedit,$row['itemno'])."'></td>
+						
+						<td><input type='text' rows='1' cols='50' name='order[".$row['itemno']."][comment]' value='".getMemo($resultedit,$row['itemno'] )."' ></td>
+						
 						<td id=removebtn><img src='cross.png' width='20' height='20' onclick='removeItem(".$row['itemno'].")'></td>
 					</tr>";
 				}
