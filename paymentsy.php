@@ -2,20 +2,17 @@
 <html>
 <head>
 <title>Order Details</title>
-<link rel="stylesheet" href="order_css.css">
+<link rel="stylesheet" href="paymentsy.css?f={random number/string}">
 </head>
+<header>
+	<?php include'navigation.php'?>
+	</header>
 <body onload="renderTime();">
-<div class="text-center">
-    <h1>Payment</h1>
+<div id=title>
+    Payment
 </div>
-	
-<div id="clockDisplay" class="container"></div>
-<?php
-echo "Date : " . date("Y/m/d") . date(" (l)"). "<br>";
-		
-		date_default_timezone_set("Asia/Kuala_Lumpur");
-		echo "Time : " . date("h:i:sa"). "<br>";
-?>
+<div id=fullbody>
+
 <script>
 	function renderTime()
 		{
@@ -78,42 +75,65 @@ echo "Date : " . date("Y/m/d") . date(" (l)"). "<br>";
 		echo"No Order ID";
 	}
 ?>
-</body>
-<table border="1">
-<th>order id</th>
-<th>table id</th>
-<th>food</th>
-<th>Quantity</th>
-<th>Subtotal</th>
+
+<div id="clockDisplay" class="container">
 <?php
-echo "<tr><td class='top'>".$orderid."</td>";
+echo "<br>Date : " . date("Y/m/d") . date(" (l)"). "<br>";
+		
+		date_default_timezone_set("Asia/Kuala_Lumpur");
+		echo "Time : " . date("h:i:sa"). "<br>";
+?>
+
+<?php
+echo "<br><b>Order ID:  $orderid</b><br>";
 				$xx = mysqli_query($conn,"SELECT itemno, idtable, qty FROM orderdb WHERE orderid = $orderid");
 				$roww = $xx->fetch_assoc();
 				$float_total = 0;
-				echo "<td class='top'>".$roww['idtable']."</td>";
+				echo "<b>Table No:  ".$roww['idtable']."</b>";?>
+				</br></br>
+				</div>
+				
+<br>
+				
+				<table>
+				
+				<th id=qtyitm>Item</th>
+				
+				<th>Subtotal</th>
+				<th> </th>
+				<?php
 				do{
 					$yy = mysqli_query($conn,"SELECT price,name FROM menuitems WHERE itemno = $roww[itemno]");
 					
 					while($rowww = $yy->fetch_assoc()){
 						$float_a = floatval($rowww['price'])*floatval($roww['qty']);
 						$float_total = $float_total + $float_a ;
-						echo "<td>".$rowww['name']."</td><td>".$roww['qty']."</td><td>".$float_a."</td></tr><td></td><td></td>";
+						
+						echo "<tr><td id=qtyitm>".$roww['qty']."  x  ".$rowww['name']." </td><td>RM  ".$float_a."</td></tr>";
 					}
 
 				} while($roww = $xx->fetch_assoc());
 				
-				echo "<td class='total'></td><td class='total' id='total2'>TOTAL:</td><td class='total' id='total3'>".$float_total."</td>";
+				echo "<td class='total'></td><td class='total' id='total2'>TOTAL</td><td class='total' id='total3'>RM  ".$float_total."</td>";
 		
 		
 		echo "</table>";
 ?>
 <br>
-
-Amount Receive:  <input type="text" name="amount" id = "amountt">
-<button type="button" onclick="calculate()">Count</button>
+Amount Received:  <input id="amountt" type="text" name="amount"placeholder="0.0" size="5">
+<button id=btn type="button" onclick="calculate()">Count</button>
+</br>
 <p id ="balancee">Balance:</p>
-<?php echo"<form action = 'totransaction.php?'> Order Id: <input type='text' name='orderid' value='$orderid'>Member Name: <input type = 'text' name ='membername'><br><br><input type='submit' value='Save Record'></form>"?>
-<br>
+</br>
+<div id=member>
+				<?php echo"<form action = 'totransaction.php?'> <br> 
+				<input type='hidden' name='orderid' value='$orderid'><br><br>
+				Member Name: <input type = 'text' name ='membername'>
+				<input id=btn type='submit' value='Save Record'></form>"
+				?>
+				</div>
+
+
 <script>
 function calculate(){
 	var x = parseFloat(document.getElementById("amountt").value);
@@ -124,4 +144,7 @@ function calculate(){
 	
 }
 </script>
+</div>
+
+</body>
 </html>
