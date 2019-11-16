@@ -31,11 +31,13 @@
 	$getting =  mysqli_query($conn,"SELECT * FROM transaction where date > '$sdate' and date < '$fff'order by date");
 	$arr = array();
 	$arrr = array();
+	$arrrrr = array();
 	$amountarr = array();
 	$getmenunames = mysqli_query($conn,"SELECT name FROM menuitems order by name");
 	while($namess = $getmenunames->fetch_assoc()){
 		array_push($arr,strval($namess['name']));
 		array_push($arrr,0);
+		array_push($arrrrr,0);
 	}
 	while($gott = $getting->fetch_assoc()){
 		$getmenuitem = mysqli_query($conn,"SELECT name FROM menuitems order by name");
@@ -46,12 +48,14 @@
 			$foodcount = strlen ($result);
 			for($y = 0 ; $y < count($arr) ; $y++){	
 				if(substr($splitfood[$x],0,$foodcount) == $arr[$y]){
-					$arrr[$y] = $arrr[$y]+ intval(substr(strval($splitfood[$x]),$foodcount,10));
+					$splitsplit = explode(' ',$splitfood[$x]);
+					$arrr[$y] = $arrr[$y]+ intval(substr(strval($splitsplit[0]),$foodcount,10));
+					$arrrrr[$y] = $arrrrr[$y]+floatval($splitsplit[1]);
 				}
 			}
 		}
 	}
-	$arrrrr = array();
+
 	$jojo = 1;
 	for($z = 0 ; $z < count($arrr) ; $z++){
 		$getprice = mysqli_query($conn,"SELECT price FROM menuitems where name = '$arr[$z]'");
@@ -59,12 +63,12 @@
 			if($jojo==1){
 			$pri = $price['price'];
 				$quantityttt = $quantityttt + $arrr[$z];
-				array_push($arrrrr,floatval($pri)*floatval($arrr[$z]));
-				echo '<tr><th>'.$arr[$z].'</th><td class="ltd">'.$arrr[$z].'</td><td class="ltd">'.floatval($pri)*floatval($arrr[$z])."</td></tr>";
+				
+				echo '<tr><th>'.$arr[$z].'</th><td class="ltd">'.$arrr[$z].'</td><td class="ltd">'.$arrrrr[$z]."</td></tr>";
 			}else{
 				$quantityttt = $quantityttt + $arrr[$z];
-				array_push($arrrrr,floatval($pri)*floatval($arrr[$z]));
-				echo '<tr><th>'.$arr[$z].'</th><td class="htd">'.$arrr[$z].'</td><td class="htd">'.floatval($pri)*floatval($arrr[$z])."</td></tr>";
+				
+				echo '<tr><th>'.$arr[$z].'</th><td class="htd">'.$arrr[$z].'</td><td class="htd">'.$arrrrr[$z]."</td></tr>";
 			}
 			$jojo = $jojo *-1;
 		}
@@ -165,10 +169,12 @@
 	echo "<h2>Individual Day's Sales</h2>";
 	$arrl = array();
 	$arrrl = array();
+	$ararar = array();
 	$getmenunamess = mysqli_query($conn,"SELECT name FROM menuitems order by name");
 	while($namesss = $getmenunamess->fetch_assoc()){
 		array_push($arrl,strval($namesss['name']));
 		array_push($arrrl,0);
+		array_push($ararar,0);
 	}
 	echo '<table>';
 	echo '<tr><th>Date</th>';
@@ -191,6 +197,7 @@
 			$gg = 0;
 			for($gg = 0; $gg<count($arrrl);$gg++){
 					$arrrl[$gg] = 0;
+					$ararar[$gg] = 0;
 			}
 			$smallamount = array();
 			
@@ -203,7 +210,9 @@
 					$foodcountt = strlen ($resultt);
 					for($y = 0 ; $y < count($arrl) ; $y++){	
 						if(substr($splitfoodd[$x],0,$foodcountt) == $arrl[$y]){
-							$arrrl[$y] = $arrrl[$y]+ intval(substr(strval($splitfoodd[$x]),$foodcountt,10));
+							$splitsplit = explode(' ',$splitfoodd[$x]);
+							$arrrl[$y] = $arrrl[$y]+ intval(substr(strval($splitsplit[0]),$foodcountt,10));
+							$ararar[$y] = $ararar[$y] + floatval($splitsplit[1]); 
 						}
 					}
 				}
@@ -228,8 +237,8 @@
 					$getpricee = mysqli_query($conn,"SELECT price FROM menuitems where name = '$arr[$p]'");
 					while($pricee = $getpricee->fetch_assoc()){
 					$prie = $pricee['price'];
-					$tp = $tp+floatval($prie)*floatval($arrrl[$p]);
-					echo '<td class="htd">'.floatval($prie)*floatval($arrrl[$p])."</td>";
+					$tp = $tp+$ararar[$p];
+					echo '<td class="htd">'.$ararar[$p]."</td>";
 					
 					}
 				}
@@ -247,12 +256,10 @@
 	}while(date('Y-m-00', strtotime($gdate)) != date('Y-m-00', strtotime($fdate)));
 	
 	echo '<tr><td>Total</td>';
-	for($z = 0 ; $z < count($arrr) ; $z++){
-		$getprice = mysqli_query($conn,"SELECT price FROM menuitems where name = '$arr[$z]'");
-		while($price = $getprice->fetch_assoc()){
-			$pri = $price['price'];
-			echo '<td>'.floatval($pri)*floatval($arrr[$z])."</td>";
-		}
+	for($z = 0 ; $z < count($arrrrr) ; $z++){
+	
+			echo '<td>'.$arrrrr[$z]."</td>";
+		
 	}
 	echo '<td>'.$totototo.'</td>';
 	echo '</tr></table>';
